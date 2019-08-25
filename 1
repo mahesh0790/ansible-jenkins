@@ -1,0 +1,19 @@
+---
+- name: adding gpg 
+  command: wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
+- name: adding repo
+  apt_repository: 
+   repo: sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+   state: present
+
+- name: update repos
+  apt: 
+  update_cache: yes
+
+- name: install jenkins
+  apt:
+   name: jenkins
+   state: present
+
+ 

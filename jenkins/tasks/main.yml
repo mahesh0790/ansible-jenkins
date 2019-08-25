@@ -1,0 +1,16 @@
+---
+- name: Add Jenkins-CI Repository Key
+  apt_key: 
+   url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key 
+   state: present
+
+- name: Add Jenkins-CI Repository
+  apt_repository:
+   repo: 'deb http://pkg.jenkins-ci.org/debian binary/'
+   state: present
+   update_cache: yes
+
+- name: Install Jenkins-CI
+  apt: 
+   name: jenkins 
+   state: present
